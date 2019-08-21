@@ -25,3 +25,38 @@ R: É uma coleção distribuída de elementos paralelizados no cluster. Possui d
   
 R: Em grandes conjuntos de dados, é melhor usar outras funções, como reduceByKey(), combineByKey()ou foldByKey(). Quando você usa groupByKey(), todos os pares de valores-chave são misturados no cluster. Muitos dados desnecessários estão sendo transferidos pela rede. Além disso, isso também significa que, se mais dados forem embaralhados em uma única máquina que podem caber na memória, os dados serão lançados no disco. Isso afeta muito o desempenho do seu trabalho do Spark.
 Quando você usa reduceByKey(), por exemplo, os pares com a mesma chave já estão combinados antes que os dados sejam embaralhados. Como resultado, você precisará enviar menos dados pela rede. Em seguida, a função reduzir é chamada novamente para que todos os valores de cada partição sejam reduzidos.
+
+## Questões Práticas
+Pergunta 6. Explique o que o código Scala abaixo faz.
+
+val textFile = sc.textFile("hdfs://...")
+val counts = textFile.flatMap(line => line.split(" "))
+.map(word => (word, 1))
+.reduceByKey(_ + _)
+counts.saveAsTextFile("hdfs://...")
+
+Pergunta 7. 
+HTTP​ ​requests​ ​to​ ​the​ ​NASA​ ​Kennedy​ ​Space​ ​Center​ ​WWW​ ​server
+
+Fonte​ ​oficial​ ​do​ ​dateset​: http://ita.ee.lbl.gov/html/contrib/NASA-HTTP.html
+Dados​:
+● Jul 01 to Jul 31, ASCII format, 20.7 MB gzip compressed, 205.2 MB.
+● Aug 04 to Aug 31, ASCII format, 21.8 MB gzip compressed, 167.8 MB.
+Sobre o dataset​: Esses dois conjuntos de dados possuem todas as requisições HTTP para o servidor da NASA Kennedy
+Space Center WWW na Flórida para um período específico.
+
+Os logs estão em arquivos ASCII com uma linha por requisição com as seguintes colunas:
+● Host fazendo a requisição​. Um hostname quando possível, caso contrário o endereço de internet se o nome não puder ser identificado.
+● Timestamp​ ​no formato "DIA/MÊS/ANO:HH:MM:SS TIMEZONE"
+● Requisição​ ​(entre​ ​aspas)
+● Código​ ​do​ ​retorno​ ​HTTP
+● Total​ ​de​ ​bytes​ ​retornados
+
+Questões
+Responda às seguintes questões devem ser desenvolvidas em Spark utilizando a sua linguagem de preferência.
+
+1. Número de hosts únicos.
+2. O total de erros 404.
+3. Os 5 URLs que mais causaram erro 404.
+4. Quantidade de erros 404 por dia.
+5. O total de bytes retornados.
