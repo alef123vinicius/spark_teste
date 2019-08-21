@@ -30,10 +30,16 @@ Quando você usa reduceByKey(), por exemplo, os pares com a mesma chave já est�
 Pergunta 6. Explique o que o código Scala abaixo faz.
 
 val textFile = sc.textFile("hdfs://...")
+
 val counts = textFile.flatMap(line => line.split(" "))
+
 .map(word => (word, 1))
+
 .reduceByKey(_ + _)
+
 counts.saveAsTextFile("hdfs://...")
+
+R: A primeira linha é utilizado o método textFile(“”), que contém o path do caminho (que pode ser relativo ou o caminho completo de um sistema externo.). Com isso, é possível ler o conteúdo do arquivo. A segunda linha utiliza o método flatMap() para transformar os dados em uma sequência de caracteres, e utiliza o split() para fazer a separação da string. O reduceByKey  agrupa os resultados que tem a mesma chave e retorna uma coleção de pares (k, v), Isso gera um conjunto de dados de pares e, em seguida, é utilizado o método SaveAsTextFile() que salva as transformações feitas.
 
 Pergunta 7. 
 HTTP​ ​requests​ ​to​ ​the​ ​NASA​ ​Kennedy​ ​Space​ ​Center​ ​WWW​ ​server
