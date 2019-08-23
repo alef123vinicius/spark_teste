@@ -2,6 +2,31 @@
 
 Uma breve descrição e implementação utilizando o Spark e Python para análise dos dados fornecidos pela NASA Space Center WWW server.
 
+##Instalação
+retirado de : https://medium.com/data-science-school/practical-apache-spark-in-10-minutes-part-1-ubuntu-installation-f69bbb17ee9d
+
+Pré-requisitos
+Java 
+Haddop
+local onde foi retirado: https://drive.google.com/file/d/1xI8AjfkldTAvqOm-7w5dUdN9R0YSLHch/view
+instlação no link acima.
+
+##Instalação
+Spark
+link do download: https://spark.apache.org/downloads.html
+Primeiro: Extrair o arquivo com o comando (Linux): tar zxvf spark_archive_filename.tgz
+
+Colocar o arquivo no mesmo nível de diretório do hadoop. cd spark_dir_name
+Para executar o spark com o python ./bin/pyspark
+Para executar o spark com o scala: ./bin/spark-shell
+
+Comando utilizado
+./bin/pyspark
+
+dados retirados de: 
+link1: ftp://ita.ee.lbl.gov/NASA_access_log_aug96.gz
+link2: ftp://ita.ee.lbl.gov/NASA_access_log_jul96.gz
+
 ## Algumas questões sobre funções e parâmetros do Spark:
 
   Pergunta 1. Qual o objetivo do comando cache em Spark?
